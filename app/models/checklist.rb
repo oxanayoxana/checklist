@@ -22,9 +22,8 @@
 #
 
 class Checklist < ApplicationRecord
+  has_many :questions, inverse_of: :checklist, dependent: :destroy
+  accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
+  validates :name, :description, presence: true
   enum status: %w[draft published]
-
-  has_many :questions, dependent: :destroy
-
-  validates :name, :description, :project_id, presence: true
 end

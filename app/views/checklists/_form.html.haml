@@ -1,4 +1,9 @@
-= simple_form_for @checklist do |f|
+= simple_form_for(checklist) do |f|
   = f.input :name
   = f.input :description
-  = f.button :submit
+  %h3 Questions:
+  = f.simple_fields_for :questions do |question|
+    = render 'question_fields', f: question
+    = link_to_add_association 'Add question', f, :questions
+  = f.button :submit, 'Save'
+

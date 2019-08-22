@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChecklistsController < ApplicationController
   def index
     @checklists = Checklist.all
@@ -5,23 +7,26 @@ class ChecklistsController < ApplicationController
 
   def new
     @checklist = Checklist.new
+    @checklist.questions.build
   end
 
-  # def create
-  #   @checklist = Checklist.new(checklist_params)
+  def show; end
 
-  #   if @checklist.save
-  #     redirect_to checklists_path,
-  #                 flash: { notice: 'Checklist was successfully created.' }
-  #   else
-  #     redirect_to new_checklist_path,
-  #                 flash: { error: @checklist.errors.full_messages.to_sentence }
-  #   end
-  # end
+  def create
+    @checklist = Checklist.new(checklist_params)
 
-  # private
+    if @checklist.save!
+      redirect_to checklists_path,
+                  flash: { notice: 'Checklist was successfully created.' }
+    else
+      redirect_to new_checklist_path,
+                  flash: { error: @checklist.errors.full_messages.to_sentence }
+    end
+  end
 
-  # def checklist_params
-  #   params.require(:checklist).permit(:name, :description, :status, :project_id)
-  # end
+  private
+
+  def checklist_params
+    params.require(:checklist).permit(:name, :description, :status, questions_attributes: %i[id title description _destroy])
+  end
 end
