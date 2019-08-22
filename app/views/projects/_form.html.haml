@@ -1,0 +1,8 @@
+= simple_form_for(project) do |f|
+  = f.input :title
+  %h3 Select checklist to fill:
+  = f.input :checklists, placeholder: 'Choose checklist' do
+    = f.select :checklists, options_for_select(      |
+    Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
+= button_to "Cancel", root_path, method: :get
+= button_to "Fill in", questions_path, method: :get

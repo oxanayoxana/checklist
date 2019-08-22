@@ -1,3 +1,4 @@
+= button_to "Fill checklist", new_project_path, method: :get
 %p list all checklists:
 - @projects.each do |project|
   %p= link_to project.title, project
