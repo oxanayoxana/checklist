@@ -1,1 +1,9 @@
-%p checklist 
+= button_to "Add checklist", new_checklist_path, method: :get
+- @checklists.each do |checklist|
+  %p= link_to checklist.name, checklist
+  %p= link_to checklist.description, checklist
+  %p= link_to checklist.status, checklist
+  - if checklist.status == 'draft'
+    = 'Not published'
+  - else
+    = link_to checklist.updated_at.strftime("%Y-%m-%d")

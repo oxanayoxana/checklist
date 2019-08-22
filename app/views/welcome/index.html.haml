@@ -1,0 +1,7 @@
+%p list all checklists:
+- @projects.each do |project|
+  %p= link_to project.title, project
+  - project.checklists.each do |checklist|
+    %p= link_to checklist.name, checklist
+    %p= link_to checklist.updated_at.strftime("%Y-%m-%d")
+    %p= link_to checklist.questions

@@ -4,15 +4,31 @@
 #
 # Table name: questions
 #
-#  id          :bigint           not null, primary key
-#  comment     :text
-#  description :text
-#  status      :integer          default("none")
-#  title       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :bigint           not null, primary key
+#  comment      :text
+#  description  :text
+#  status       :integer          default("none")
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  checklist_id :bigint
+#
+# Indexes
+#
+#  index_questions_on_checklist_id  (checklist_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (checklist_id => checklists.id)
 #
 
 class Question < ApplicationRecord
-  enum status: %w[none n/a yes no]
+  COMMENT_MIN_LENGTH = 12
+
+  enum status: %w[status_none n/a yes no]
+  
+  belongs_to :checklist
+
+  validates :title, :description, :checklist_id, presence: true
+  validates :comment,   length: { minimum: COMMENT_MIN_LENGTH }, allow_nil: true
 end

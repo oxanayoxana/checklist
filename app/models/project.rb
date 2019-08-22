@@ -11,4 +11,7 @@
 #
 
 class Project < ApplicationRecord
+  has_many :checklists, dependent: :destroy
+
+  validates :title, presence: true
 end
