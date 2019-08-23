@@ -2,8 +2,11 @@
 
 Rails.application.routes.draw do
   resources :projects
-  resources :checklists
   resources :questions
+
+  resources :checklists do
+    resources :answers
+  end
 
   root to: 'welcome#index'
 end

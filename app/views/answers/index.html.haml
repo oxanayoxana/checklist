@@ -1,0 +1,9 @@
+= @checklist.name
+= @checklist.description
+- @questions.each do |question|
+  %p= question.title
+  %p= question.description
+  = simple_form_for @answer do |f|
+    = f.input :comment
+    = f.input :status
+    = f.button :submit

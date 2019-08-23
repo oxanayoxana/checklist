@@ -5,4 +5,4 @@
     = f.select :checklists, options_for_select(      |
     Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
 = button_to "Cancel", root_path, method: :get
-= button_to "Fill in", questions_path, method: :get
+= button_to "Fill in", new_checklist_answer_path(@checklist, @answer), method: :get

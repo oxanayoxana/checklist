@@ -1,4 +1,4 @@
-= button_to "Fill checklist", new_project_path, method: :get
+= button_to "Fill checklist", new_project_path, method: :get, class: 'mdl-button mdl-js-button mdl-button--raised'
 %p list all checklists:
 - @projects.each do |project|
   %p= link_to project.title, project
