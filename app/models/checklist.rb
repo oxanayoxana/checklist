@@ -23,8 +23,6 @@
 
 class Checklist < ApplicationRecord
   has_many :questions, inverse_of: :checklist, dependent: :destroy
-  
-  belongs_to :project
 
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
   
