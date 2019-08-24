@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ChecklistsController < ApplicationController
+  before_action :current_checklist, only: %i[show edit update destroy]
+
   def index
     @checklists = Checklist.all
   end
@@ -28,5 +30,9 @@ class ChecklistsController < ApplicationController
 
   def checklist_params
     params.require(:checklist).permit(:name, :description, :status, questions_attributes: %i[id title description _destroy])
+  end
+
+  def current_checklist
+    @checklist = Checklist.find(params[:id])
   end
 end

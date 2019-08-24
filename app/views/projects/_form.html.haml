@@ -1,8 +1,20 @@
 = simple_form_for(project) do |f|
   = f.input :title
   %h3 Select checklist to fill:
-  = f.input :checklists, placeholder: 'Choose checklist' do
-    = f.select :checklists, options_for_select(      |
+  = f.input :checklist_id, placeholder: 'Choose checklist' do
+    = f.select :checklist_id, options_for_select(      |
     Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
+    = f.hidden_field :checklist_id, :value => params[:checklist_id]
+  = f.button :button, type: :submit, label: "Fill in"
 = button_to "Cancel", root_path, method: :get
-= button_to "Fill in", new_checklist_answer_path(@checklist, @answer), method: :get
+
+
+/ = button_to "Fill in", new_checklist_answer_path(@checklist, @answer), method: :get
+
+
+/000
+/ = f.input :checklists, placeholder: 'Choose checklist' do
+/     = f.select :checklists, options_for_select(      |
+/     Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
+/ = button_to "Cancel", root_path, method: :get
+/ = button_to "Fill in", new_checklist_answer_path(@checklist, @answer), method: :get
