@@ -1,6 +1,25 @@
 = button_to "Fill checklist", new_project_path, method: :get, class: 'mdl-button mdl-js-button mdl-button--raised'
 %p list all checklists:
-- @checklists.each do |checklist|
-    %p= link_to checklist.name, checklist
-    %p= link_to checklist.updated_at.strftime("%Y-%m-%d")
-    %p= link_to checklist.questions
+/ - @checklists.each do |checklist|
+/   %p= link_to checklist.projects, checklist
+/   %p= link_to checklist.name, checklist
+/   %p= link_to checklist.updated_at.strftime("%Y-%m-%d")
+/   %p= link_to checklist.questions
+
+%table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+  %thead
+    %tr
+      %th.mdl-data-table__cell--non-numeric Project
+      %th Checklist
+      %th Updated
+      %th Question
+      %th Actions
+  %tbody
+    - @checklists.each do |checklist|
+      - checklist.projects.each do |project|
+        %tr
+          %td= project.title
+          %td= project.checklist.name
+          %td= project.checklist.updated_at.strftime("%Y-%m-%d")
+
+

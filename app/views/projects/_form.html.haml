@@ -6,16 +6,3 @@
     Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
   = f.button :button, type: :submit
 = button_to "Cancel", root_path, method: :get
-
-/ = button_to "Fill in", new_checklist_answer_path(@checklist, @answer), method: :get
-
-
-/ hidden_field :checklist_id, :value => params[:checklist_id]
-/000
-/= f.input :checklist_id, placeholder: 'Choose checklist' do
-/     = f.select :checklist_id, options_for_select(      |
-/     Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
-/     = f.hidden_field :checklist_id, :value => params[:checklist_id]
-/   = f.button :button, type: :submit, label: "Fill in"
-/ = button_to "Cancel", root_path, method: :get
-/ = f.input :checklist_id, as: :hidden, input_html: {value: checklist.id}
