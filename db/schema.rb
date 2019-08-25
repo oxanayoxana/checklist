@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_22_135752) do
+ActiveRecord::Schema.define(version: 2019_08_24_134904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_08_22_135752) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "question_id"
+    t.bigint "checklist_id"
+    t.index ["checklist_id"], name: "index_answers_on_checklist_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -30,14 +32,14 @@ ActiveRecord::Schema.define(version: 2019_08_22_135752) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "project_id"
-    t.index ["project_id"], name: "index_checklists_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "checklist_id"
+    t.index ["checklist_id"], name: "index_projects_on_checklist_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -51,7 +53,8 @@ ActiveRecord::Schema.define(version: 2019_08_22_135752) do
     t.index ["checklist_id"], name: "index_questions_on_checklist_id"
   end
 
+  add_foreign_key "answers", "checklists"
   add_foreign_key "answers", "questions"
-  add_foreign_key "checklists", "projects"
+  add_foreign_key "projects", "checklists"
   add_foreign_key "questions", "checklists"
 end

@@ -15,7 +15,9 @@ class ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save!
-      redirect_to projects_path,
+      @checklist = @project.checklist
+
+      redirect_to new_checklist_questions_answer_path(@checklist.id),
                   flash: { notice: 'Project was successfully created.' }
     else
       redirect_to new_project_path,
@@ -26,6 +28,6 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title)
+    params.require(:project).permit(:title, :checklist_id)
   end
 end

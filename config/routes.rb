@@ -5,7 +5,15 @@ Rails.application.routes.draw do
   resources :questions
 
   resources :checklists do
-    resources :answers
+    resource :questions, only: [:index] do
+      resources :answers
+    end
+  end
+
+  resources :checklists do
+    resources :questions, only: [:index] do
+      resources :answers
+    end
   end
 
   root to: 'welcome#index'
