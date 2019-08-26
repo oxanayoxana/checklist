@@ -8,3 +8,132 @@
     padding: 0 18px 12px 18px;
     text-align: left;
 }
+
+label
+{
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+input
+{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  margin: 10px;
+  display:block;
+  width:90%;
+  border:none;
+  border-bottom:1px solid #3f51b5;
+  border-radius: 0px;
+}
+
+textarea {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  margin: 10px;
+  display:block;
+  width:90%;
+  border:none;
+  border-bottom:1px solid #3f51b5;
+  border-radius: 0px;
+}
+
+.textarea-nested {
+  position: relative;
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  margin: 10px;
+  display:block;
+  width:80%;
+  border:none;
+}
+
+.nested-fields {
+    border: 1px solid grey;
+    margin: 10px;
+    margin-right: 5px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-gap: 1px;
+}
+
+.box-input {
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+.box-button {
+    grid-column: 2 ;
+    grid-row: 1 / 2;
+}
+
+button {
+  cursor: pointer;
+  outline:none;
+  background-color: Transparent;
+  border-width: 0px;
+  border-style: hidden;
+}
+
+.mdl-textfield {
+    position: relative;
+    font-size: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 300px;
+    max-width: 100%;
+    margin: 10px;
+    padding: 20px 0;
+}
+
+.arrow_back {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.center {
+  margin: auto;
+  width: 80%;
+  padding: 10px;
+}
+
+.mdl-button--fab {
+    left: 45%;
+    border-radius: 50%;
+    font-size: 24px;
+    height: 56px;
+    margin: auto;
+    min-width: 56px;
+    width: 56px;
+    padding: 0;
+    overflow: hidden;
+    background: rgba(158,158,158, 0.20);
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    position: relative;
+    line-height: normal;
+    position: relative;
+}
+
+.mdl-button--fab .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 39%;
+    transform: translate(-12px, -12px);
+    line-height: 24px;
+    width: 24px;
+}
