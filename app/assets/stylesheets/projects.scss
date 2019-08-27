@@ -1,3 +1,25 @@
-// Place all the styles related to the Projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.sidebar-projects {
+  grid-column: col / span 2;
+  grid-row: row ;
+}
+.content-projects {
+  grid-column: col 3 / span 2 ;
+  grid-row: row ;
+}
+
+.footer-projects-right {
+  grid-column: col / span 1;
+  grid-row: row 2;
+}
+
+#footer_projects_left {
+  grid-column: col 3 / span 2;
+  grid-row: row 2;
+}
+
+.wrapper-projects {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: [col] 100px [col] 100px [col] 100px [col] 100px  ;
+  grid-template-rows: [row] auto [row] auto [row] ;
+}
