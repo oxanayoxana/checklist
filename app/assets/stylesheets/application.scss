@@ -1,4 +1,5 @@
 @import 'material';
+@import 'projects';
 
 .btn-margin {
   margin: 10px;
@@ -67,6 +68,23 @@ textarea {
     display: grid;
     grid-template-columns: 80% 20%;
     grid-gap: 1px;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: [col] 100px [col] 100px [col] 100px [col] 100px  ;
+  grid-template-rows: [row] auto [row] auto [row] ;
+}
+
+.wrapped-form {
+  grid-column: col / span 3 ;
+  grid-row: row ;
+}
+
+.wrapped-save-button {
+  grid-column: col 4 / span 1 ;
+  grid-row: row ;
 }
 
 .box-input {
