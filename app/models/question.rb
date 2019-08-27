@@ -25,7 +25,7 @@
 class Question < ApplicationRecord
   # COMMENT_MIN_LENGTH = 12
   belongs_to :checklist
-  has_many :answers
+  has_many :answers, dependent: :destroy
   
   validates :title, :description, presence: true
   # validates :comment, length: { minimum: COMMENT_MIN_LENGTH }, allow_nil: true
