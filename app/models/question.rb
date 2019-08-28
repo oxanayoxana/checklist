@@ -5,7 +5,6 @@
 # Table name: questions
 #
 #  id          :bigint           not null, primary key
-#  comment     :text
 #  description :text
 #  title       :string
 #  created_at  :datetime         not null
