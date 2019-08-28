@@ -22,6 +22,8 @@ gem 'haml-rails', "~> 2.0"
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'material_design_lite-sass'
+gem 'popper_js', '~> 1.14.5'
+gem 'bootstrap', '~> 4.3.1'
 
 gem 'rubocop-rails'
 gem "cocoon"

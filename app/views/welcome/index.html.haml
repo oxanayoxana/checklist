@@ -1,4 +1,8 @@
-= button_to "Fill checklist", new_checklist_path, method: :get, class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'
+= button_to "Fill checklist", new_checklist_path, { method: :get, :remote => true, 'data-toggle' => "modal", 'data-target' => '#new', class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'}
+
+#new.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", tabindex: "-1", 'aria-hidden': true}
+  .modal-dialog{:role => "document"}
+    .modal-content
 
 %table.left-data-table.mdl-js-data-table.mdl-shadow--2dp
   %thead
@@ -14,5 +18,3 @@
         %td= checklist.form.name
         %td= checklist.form.description
         %td= checklist.form.updated_at.strftime("%Y-%m-%d")
-
-
