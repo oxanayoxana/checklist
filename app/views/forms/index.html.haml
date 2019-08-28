@@ -1,0 +1,23 @@
+= button_to "Add checklist", new_form_path, method: :get, class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'
+
+%table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+  %thead
+    %tr
+      %th.mdl-data-table__cell--non-numeric Name
+      %th Description
+      %th Status
+      %th Published
+      %th Actions
+  %tbody
+    - @forms.each do |form|
+      %tr
+        %td= form.name
+        %td= form.description
+        %td= form.status
+        - if form.status == 'draft'
+          %td= 'Not published'
+        - else
+          %td= form.updated_at.strftime("%Y-%m-%d")
+        %td= 'Actions'
+
+

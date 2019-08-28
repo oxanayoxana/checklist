@@ -1,0 +1,11 @@
+= simple_form_for(form) do |f|
+  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+  .row.center
+    = f.input :name, placeholder: 'Checklist title'
+    = f.input :description, placeholder: 'Checklist detailed description'
+  .row.textarea-nested.center
+    = f.simple_fields_for :questions do |question|
+      = render 'question_fields', f: question
+      = link_to_add_association button_tag('add', type: "button", class: "material-icons"), f, :questions, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
+  .col
+  = f.button :button, 'Save', class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'

@@ -1,26 +1,22 @@
 class AnswersController < ApplicationController
   def index
     @answers = Answer.all
-    @checklist = Checklist.find(params[:checklist_id])
-    @questions = @checklist.questions.all
+    @form = Form.find(params[:form_id])
+    @questions = @form.questions.all
   end
 
   def new
     @answer = Answer.new
-    @checklist = Checklist.find(params[:checklist_id])
-    @questions = @checklist.questions.all
+    @questions = @form.questions.all
   end
 
   def create
-    @checklist = Checklist.find(params[:checklist_id])
-    # @questions = @checklist.questions.all
-    @question = @checklist.questions.find(params[:question_id])
-    # @answer = Answer.new(answer_params)
+    @question = @form.questions.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
-    @answer.checklist = @checklist
+    @answer.form = @form
 
     if @answer.save!
-      redirect_to checklist_questions_answers_path,
+      redirect_to root_path,
                   flash: { notice: 'Answer was successfully created.' }
     else
       render :new,
@@ -32,6 +28,6 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit!
-    # (:status, :comment, :question_id, :checklist_id)
+    # (:status, :comment, :question_id, :form_id)
   end
 end

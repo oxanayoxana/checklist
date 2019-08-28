@@ -5,9 +5,9 @@
   .content-projects 
     = simple_form_for(project) do |f|
       = f.input :title, placeholder: 'Project ID', label: 'Project ID'
-      = f.input :checklist_id, placeholder: 'Choose checklist' do
-        = f.select :checklist_id, options_for_select(      |
-        Checklist.all.map{ |checklist| [checklist.name, checklist.id]}) |
+      = f.input :form_id, placeholder: 'Choose checklist' do
+        = f.select :form_id, options_for_select(      |
+        Form.all.map{ |form| [form.name, form.id]}) |
       = f.button :button , type: :submit, input_html: { id: :footer_projects_left }, class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'
   .footer-projects-right
     = button_to "Cancel", root_path, method: :get, class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'

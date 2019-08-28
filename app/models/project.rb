@@ -4,23 +4,23 @@
 #
 # Table name: projects
 #
-#  id           :bigint           not null, primary key
-#  title        :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  checklist_id :bigint
+#  id         :bigint           not null, primary key
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  form_id    :bigint
 #
 # Indexes
 #
-#  index_projects_on_checklist_id  (checklist_id)
+#  index_projects_on_form_id  (form_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (checklist_id => checklists.id)
+#  fk_rails_...  (form_id => forms.id)
 #
 
 class Project < ApplicationRecord
-  belongs_to :checklist
+  belongs_to :form
 
   validates :title, presence: true
 end
