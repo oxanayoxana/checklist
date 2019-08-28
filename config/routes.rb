@@ -12,9 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :forms do
-    resource :checklists, only: [:new] do
-      resources :answers, only: [:new] 
-    end
+    resources :answers
   end
 
   root to: 'welcome#index'

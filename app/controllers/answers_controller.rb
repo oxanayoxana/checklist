@@ -7,10 +7,12 @@ class AnswersController < ApplicationController
 
   def new
     @answer = Answer.new
+    @form = Form.find(params[:form_id])
     @questions = @form.questions.all
   end
 
   def create
+    @form = Form.find(params[:form_id])
     @question = @form.questions.find(params[:question_id])
     @answer = @question.answers.build(answer_params)
     @answer.form = @form

@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     if @project.save!
       @form = @project.form
 
-      redirect_to new_form_checklists_path(@form.id),
+      redirect_to new_form_answer_path(@form.id),
                   flash: { notice: 'Project was successfully created.' }
     else
       redirect_to new_project_path,

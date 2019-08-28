@@ -3,7 +3,7 @@
 - @questions.each do |question|
   %p= question.title
   %p= question.description
-  = simple_form_for ([@form, @checklist, @answer]) do |f|
+  = simple_form_for ([@form, @checklist]) do |f|
     = f.input :comment
     = f.input :status, collection: Answer::STATUS
     = f.button :submit
