@@ -8,9 +8,12 @@ class ChecklistsController < ApplicationController
     if @checklist.save!
       flash[:notice] = "checklist created!"
       respond_to do |format|
-        format.html { render 'new'}
+        format.html { render 'give_answers'}
         format.js {render 'give_answers'}
       end
+    end
+
+    def give_answers
     end
   end
 
