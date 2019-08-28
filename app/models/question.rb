@@ -7,7 +7,6 @@
 #  id          :bigint           not null, primary key
 #  comment     :text
 #  description :text
-#  status      :integer          default(0)
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -26,5 +25,5 @@ class Question < ApplicationRecord
   belongs_to :form
   has_many :answers, dependent: :destroy
   
-  validates :title, :description, presence: true
+  validates :title, :description, :form_id, presence: true
 end

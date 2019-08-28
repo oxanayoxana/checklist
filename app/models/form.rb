@@ -14,11 +14,11 @@
 
 class Form < ApplicationRecord
   has_many :questions, inverse_of: :form, dependent: :destroy
-  has_many :projects, dependent: :destroy
+  has_many :checklists, dependent: :destroy
   
   accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
   
-  validates :name, :description, presence: true
+  validates :name, :description, :status, presence: true
   
   enum status: %w[draft published]
 end

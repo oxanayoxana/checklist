@@ -2,7 +2,6 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  resources :projects
   resources :questions
 
   resources :checklists do
@@ -11,9 +10,22 @@ Rails.application.routes.draw do
     end
   end
 
+  # resources :forms do
+  #   resources :answers
+  # end
+
   resources :forms do
-    resources :answers
+    resource :questions do
+      resources :answers
+    end
   end
+
+  resources :forms do
+    resource :questions do
+      resources :answers
+    end
+  end
+
 
   root to: 'welcome#index'
 end

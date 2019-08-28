@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_28_065757) do
+ActiveRecord::Schema.define(version: 2019_08_28_102603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_08_28_065757) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "question_id"
+    t.bigint "checklist_id"
+    t.index ["checklist_id"], name: "index_answers_on_checklist_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -28,7 +30,10 @@ ActiveRecord::Schema.define(version: 2019_08_28_065757) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "form_id"
+    t.bigint "user_id"
+    t.string "project"
     t.index ["form_id"], name: "index_checklists_on_form_id"
+    t.index ["user_id"], name: "index_checklists_on_user_id"
   end
 
   create_table "forms", force: :cascade do |t|
@@ -39,18 +44,9 @@ ActiveRecord::Schema.define(version: 2019_08_28_065757) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "form_id"
-    t.index ["form_id"], name: "index_projects_on_form_id"
-  end
-
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "status", default: 0
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -70,8 +66,9 @@ ActiveRecord::Schema.define(version: 2019_08_28_065757) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "checklists"
   add_foreign_key "answers", "questions"
   add_foreign_key "checklists", "forms"
-  add_foreign_key "projects", "forms"
+  add_foreign_key "checklists", "users"
   add_foreign_key "questions", "forms"
 end
