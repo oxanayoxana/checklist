@@ -1,0 +1,6 @@
+.nested-fields
+  .box-input
+    = f.input :comment, placeholder: 'Comment', label: false
+    = f.input :status, collection: Answer::STATUS
+  .box-button
+    = link_to_remove_association button_tag('remove', class: "material-icons"), f, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'

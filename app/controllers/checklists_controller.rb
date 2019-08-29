@@ -1,11 +1,11 @@
 class ChecklistsController < ApplicationController
   def new
-    @checklist = Checklist.new
+    @checklist = Checklist.new(:form_id => params[:form_id])
   end
 
   def create
-    @checklist = Checklist.new(checklist_params)
-
+    @checklist = Checklist.build
+    
     if @checklist.save!
       flash[:notice] = "checklist created!"
       respond_to do |format|
@@ -17,8 +17,10 @@ class ChecklistsController < ApplicationController
 
   def build
     @checklist = Checklist.new(checklist_params)
-    @form = Form.where(:form_id => params[:form_id]).first
+    params[:form_id] = @checklist.form_id
+    @form = Form.find(params[:form_id])
     @questions = @form.questions.all
+    @answer = @checklist.answers.build
   end
 
   private

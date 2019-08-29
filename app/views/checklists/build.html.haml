@@ -3,7 +3,9 @@
 - @questions.each do |question|
   %p= question.title
   %p= question.description
-  = simple_form_for ([@form, question, @answer]) do |f|
-    = f.input :comment
-    = f.input :status, collection: Answer::STATUS
-    = f.button :submit
+  = simple_form_for(@checklist) do |f|
+    = f.simple_fields_for :answers do |answer|
+      = render 'answer_fields', f: answer
+      = link_to_add_association button_tag('add', type: "button", class: "material-icons"), f, :answers, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect'
+  .col
+    = f.button :button, 'Save', class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'
