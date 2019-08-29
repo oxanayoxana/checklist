@@ -27,9 +27,9 @@ class Answer < ApplicationRecord
 
   COMMENT_MIN_LENGTH = 12
 
-  belongs_to :question
+  belongs_to :question, optional: true
   belongs_to :checklist
 
-  validates :comment, length: { minimum: COMMENT_MIN_LENGTH }, allow_nil: true
-  validates :comment, :status, :checklist_id, :question_id, presence: true
+  # validates :comment, length: { minimum: COMMENT_MIN_LENGTH }, allow_nil: true
+  validates :comment, :status, presence: true
 end

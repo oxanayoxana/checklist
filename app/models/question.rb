@@ -22,7 +22,7 @@
 
 class Question < ApplicationRecord
   belongs_to :form
-  has_many :answers, dependent: :destroy
+  has_many :answers, inverse_of: :question
   
   validates :title, :description, :form_id, presence: true
 end
