@@ -5,6 +5,7 @@ class ChecklistsController < ApplicationController
 
   def create
     @checklist = Checklist.new(checklist_params)
+
     if @checklist.save!
       flash[:notice] = "checklist created!"
       respond_to do |format|
@@ -12,9 +13,12 @@ class ChecklistsController < ApplicationController
         format.js {render 'give_answers'}
       end
     end
+  end
 
-    def give_answers
-    end
+  def build
+    @checklist = Checklist.new(checklist_params)
+    @form = Form.where(:form_id => params[:form_id]).first
+    @questions = @form.questions.all
   end
 
   private
