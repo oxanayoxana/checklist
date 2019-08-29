@@ -20,13 +20,12 @@ class ChecklistsController < ApplicationController
     #   question.answers.create!
     # end
     # @answer = @checklist.answers.build
-    binding.pry
 
     if @checklist.save!
       flash[:notice] = "checklist created!"
       respond_to do |format|
-        format.html { render 'give_answers'}
-        format.js {render 'give_answers'}
+        format.html { redirect_to '/'}
+        format.js { redirect_to '/'}
       end
     end
   end
@@ -36,8 +35,10 @@ class ChecklistsController < ApplicationController
     params[:form_id] = @checklist.form_id
     @form = Form.find(params[:form_id])
     @questions = @form.questions.all
+
     @answer = @checklist.answers.build
 
+    # @question = 
     # @form.questions.all.each do |question|
     #   question.build_answer
     # end 
@@ -45,7 +46,7 @@ class ChecklistsController < ApplicationController
 
   private
   def checklist_params
-    params.require(:checklist).permit(:project, :form_id, :user_id, answers_attributes: %i[id status comment question_id _destroy])
+    params.require(:checklist).permit(:project, :form_id, :user_id, answers_attributes: %i[id status comment _destroy])
   end
 
   def current_checklist

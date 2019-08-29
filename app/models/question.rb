@@ -24,5 +24,5 @@ class Question < ApplicationRecord
   belongs_to :form
   has_many :answers, inverse_of: :question
   
-  validates :title, :description, :form_id, presence: true
+  validates :title, :description, presence: true
 end

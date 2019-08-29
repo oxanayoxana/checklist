@@ -10,5 +10,5 @@
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
       = f.input :form_id, as: :hidden, input_html: { value: @form.id }
       = f.input :project, as: :hidden, input_html: { value: @checklist.project }
-      = f.input :question_id, as: :hidden, input_html: { value: question }
+      / = f.input :question_id, as: :hidden, input_html: { value: question }
     = f.button :button, 'Save', class: 'mdl-button mdl-js-button mdl-button--raised btn-margin'
