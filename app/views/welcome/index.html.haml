@@ -18,3 +18,12 @@
         %td= checklist.form.name
         %td= checklist.form.description
         %td= checklist.form.updated_at.strftime("%Y-%m-%d")
+        %td
+          .progress
+            = simple_progress_bar 0.35, alternative: 'success', class: 'bg-success'
+            = simple_progress_bar 0.20, alternative: 'warning', class: 'bg-warning'
+            = simple_progress_bar 0.10, alternative: 'danger', class: 'bg-danger'
+
+
+
+

@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'material_design_lite-sass'
 gem 'popper_js', '~> 1.14.5'
 gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap_progressbar'
 
 gem 'rubocop-rails'
 gem "cocoon"
