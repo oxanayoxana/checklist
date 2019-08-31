@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_134904) do
+ActiveRecord::Schema.define(version: 2019_08_28_103239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2019_08_24_134904) do
   end
 
   create_table "checklists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "form_id"
+    t.bigint "user_id"
+    t.string "project"
+    t.index ["form_id"], name: "index_checklists_on_form_id"
+    t.index ["user_id"], name: "index_checklists_on_user_id"
+  end
+
+  create_table "forms", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "status", default: 0
@@ -34,27 +44,30 @@ ActiveRecord::Schema.define(version: 2019_08_24_134904) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "checklist_id"
-    t.index ["checklist_id"], name: "index_projects_on_checklist_id"
-  end
-
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "status", default: 0
-    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "checklist_id"
-    t.index ["checklist_id"], name: "index_questions_on_checklist_id"
+    t.bigint "form_id"
+    t.index ["form_id"], name: "index_questions_on_form_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "answers", "checklists"
   add_foreign_key "answers", "questions"
-  add_foreign_key "projects", "checklists"
-  add_foreign_key "questions", "checklists"
+  add_foreign_key "checklists", "forms"
+  add_foreign_key "checklists", "users"
+  add_foreign_key "questions", "forms"
 end

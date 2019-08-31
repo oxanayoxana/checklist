@@ -1,0 +1,11 @@
+.modal-header
+  %button.close{"data-dismiss" => "modal", :type => "button"} Close
+  %h4#new.modal-title Modal window
+.modal-body
+  = simple_form_for @checklist, :url => new_checklist_path(@checklist, :form_id => 'form.id'), :method => "GET" do |f|
+    = f.input :project
+    = f.select :form_id, options_for_select(      |
+      Form.all.map{ |form| [form.name, form.id]}) |
+    = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+    = f.button :submit
+.modal-footer

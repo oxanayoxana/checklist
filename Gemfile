@@ -11,6 +11,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 
+
 # Frontend
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
@@ -21,9 +22,15 @@ gem 'haml-rails', "~> 2.0"
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'material_design_lite-sass'
+gem 'popper_js', '~> 1.14.5'
+gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap_progressbar'
 
 gem 'rubocop-rails'
 gem "cocoon"
+gem 'devise'
+
+gem 'pry', '~> 0.12.2'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

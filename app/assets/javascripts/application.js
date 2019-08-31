@@ -17,4 +17,5 @@
 //= require jquery3
 //= require cocoon
 //= require material
-
+//= require popper
+//= require bootstrap

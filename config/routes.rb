@@ -1,20 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :projects
+  devise_for :users
   resources :questions
 
-  resources :checklists do
-    resource :questions, only: [:index] do
-      resources :answers
-    end
-  end
+  resources :forms
 
-  resources :checklists do
-    resources :questions, only: [:index] do
-      resources :answers
-    end
-  end
+  resources :checklists, only: [:index, :create, :new, :edit, :update, :destroy]
+
+  get "checklists/build", to: 'checklists#build', as: :build_checklist
 
   root to: 'welcome#index'
 end
